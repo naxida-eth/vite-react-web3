@@ -14,16 +14,18 @@
   "dependencies": {
     "@ahooksjs/use-url-state": "^3.5.1",
     "@binance-chain/bsc-connector": "^1.0.0",
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@hookform/resolvers": "^2.9.7",
     "@popperjs/core": "^2.10.1",
     "@react-hook/throttle": "^2.2.0",
     "@react-oauth/google": "^0.2.6",
     "@reduxjs/toolkit": "^1.5.0",
     "@rooks/use-mutation-observer": "^4.11.2",
-    "@siddomains/sidjs": "0.1.23",
+    "@siddomains/sidjs": "^0.1.29",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@walletconnect/ethereum-provider": "^2.10.0",
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",
     "@web3-react/walletconnect-connector": "^6.2.4",
@@ -79,6 +81,7 @@
     "styled-components": "^5.3.0",
     "swiper": "^7.4.1",
     "vite-plugin-externals": "^0.6.2",
+    "vite-plugin-notifier": "^0.1.5",
     "wagmi": "^0.12.7",
     "web-vitals": "^1.0.1",
     "web3": "1.10.2",
@@ -117,6 +120,7 @@
     "vite-plugin-commonjs": "^0.9.0",
     "vite-plugin-css-modules": "^0.0.1",
     "vite-plugin-define": "^1.0.6",
+    "vite-plugin-node-polyfills": "^0.14.0",
     "vite-plugin-svgr": "^3.2.0"
   }
 }
