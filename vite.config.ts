@@ -40,7 +40,7 @@ export default defineConfig({
   ],
   define: {
     "process.env": process.env,
-    Buffer: Buffer,
+    // Buffer: Buffer,
     "process.env.ESLINT_DISABLED": true,
   },
   optimizeDeps: {
