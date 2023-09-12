@@ -8,23 +8,45 @@ import svgr from "vite-plugin-svgr";
 import commonjsPlugin from "vite-plugin-commonjs";
 // import nodePolyfills from "rollup-plugin-node-polyfills";
 // import { Buffer } from 'Buffer';
-// import vitePluginRequire from "vite-plugin-require";
 // import { viteExternalsPlugin } from "vite-plugin-externals";
 // import { nodePolyfills } from "vite-plugin-node-polyfills";
 
+import requireTransform from "vite-plugin-require-transform";
+
 import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
 import notifier from "vite-plugin-notifier";
+import inject from "@rollup/plugin-inject";
 
 /** @type {import('vite').UserConfig} */
 export default defineConfig({
   build: {
     chunkSizeWarningLimit: 1000,
     outDir: "build", //想要把dist修改成什么名字在这边改
+    rollupOptions: {
+      plugins: [
+        inject({
+          Buffer: ["buffer", "Buffer"],
+        }),
+      ],
+    },
+    /**
+     * Instructs the plugin whether to enable mixed module transformations. 
+     * This is useful in scenarios with modules that contain a mix of ES import statements and CommonJS require expressions. 
+     * Set to true if require calls should be transformed to imports in mixed modules, 
+     * or false if the require expressions should survive the transformation. 
+     * The latter can be important if the code contains environment detection, 
+     * or you are coding for an environment with special treatment for require calls such as ElectronJS. 
+     * See also the "ignore" option.
+     * url: https://www.electronjs.org/
+     * */
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
   },
   plugins: [
     react(),
     VitePluginCssModules.default(),
-    // vitePluginRequire.default(),
+    requireTransform({}),
     svgr(),
     commonjsPlugin(),
     notifier(),
@@ -40,7 +62,7 @@ export default defineConfig({
   ],
   define: {
     "process.env": process.env,
-    // Buffer: Buffer,
+    // Buffer: "buffer",
     "process.env.ESLINT_DISABLED": true,
   },
   optimizeDeps: {
